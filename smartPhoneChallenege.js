@@ -65,6 +65,7 @@ const process = require("process");
       Price:100000,
       Link:"Hi"
     }
+    await tab.waitForTimeout(2000);
     const allPhones = await tab.$$('._1AtVbE.col-12-12 ._13oc-S a');
     let allPhoneLinks=[];
     for(let i=0;i<allPhones.length;i++){
@@ -73,6 +74,8 @@ const process = require("process");
     }
     for(let i=0;i<allPhoneLinks.length;i++)
       await singlePhone(browser, allPhoneLinks[i], criteria, bestSmartphone);
+    
+    tab.close();
     const page = await browser.newPage();
     await page.goto(bestSmartphone.Link);
 })();
