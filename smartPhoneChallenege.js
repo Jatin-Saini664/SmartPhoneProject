@@ -131,37 +131,29 @@ async function singlePhone(browser, link, criteria, bestSmartphone){
   p1+= PValue.split("₹")[1].split(",")[1];
   Price = Number(p1);
   if(Number(bestSmartphone.AntutuScore)<AntutuScore){
-    bestSmartphone.AntutuScore=AntutuScore;
-    bestSmartphone.RAM=RAM;
-    bestSmartphone.InternalStorage=InternalStorage;
-    bestSmartphone.Price=Price;
-    bestSmartphone.Link=link;
+    change(bestSmartphone, AntutuScore, RAM, InternalStorage, Price, link);
   }else if(Number(bestSmartphone.AntutuScore)===AntutuScore){
     if(Number(bestSmartphone.RAM)<RAM){
-      bestSmartphone.AntutuScore=AntutuScore;
-      bestSmartphone.RAM=RAM;
-      bestSmartphone.InternalStorage=InternalStorage;
-      bestSmartphone.Price=Price;
-      bestSmartphone.Link=link;
+      change(bestSmartphone, AntutuScore, RAM, InternalStorage, Price, link);
     }else if(Number(bestSmartphone.RAM)===RAM){
       if(Number(bestSmartphone.InternalStorage)<InternalStorage){
-        bestSmartphone.AntutuScore=AntutuScore;
-        bestSmartphone.RAM=RAM;
-        bestSmartphone.InternalStorage=InternalStorage;
-        bestSmartphone.Price=Price;
-        bestSmartphone.Link=link;
+        change(bestSmartphone, AntutuScore, RAM, InternalStorage, Price, link);
       }else if(Number(bestSmartphone.InternalStorage)<InternalStorage){
         if(Number(bestSmartphone.Price)>Price){
-          bestSmartphone.AntutuScore=AntutuScore;
-          bestSmartphone.RAM=RAM;
-          bestSmartphone.InternalStorage=InternalStorage;
-          bestSmartphone.Price=Price;
-          bestSmartphone.Link=link;
+          change(bestSmartphone, AntutuScore, RAM, InternalStorage, Price, link);
         }
       }
     }
   }
   page.close();
+}
+
+function change(bestSmartphone, AntutuScore, RAM, InternalStorage, Price, link){
+  bestSmartphone.AntutuScore=AntutuScore;
+  bestSmartphone.RAM=RAM;
+  bestSmartphone.InternalStorage=InternalStorage;
+  bestSmartphone.Price=Price;
+  bestSmartphone.Link=link;
 }
 
 async function takeInput(){
